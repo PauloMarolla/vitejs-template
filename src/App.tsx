@@ -1,6 +1,6 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import { Home } from './pages/Home/index'
-import { Login } from './pages/Login'
+import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom'
+import { ConsoleProvider } from './contexts/console'
+import { Home, Login, User } from './pages'
 
 const App = () => {
 
@@ -9,7 +9,15 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='login' element={<Login />} />
+
+          <Route path='users' element={<ConsoleProvider><Outlet /></ConsoleProvider>}>
+            <Route index element={<h1>user</h1>} />
+            <Route path='account' element={<h1>account</h1>} />
+            <Route path=':id' element={<User />} />
+          </Route>
+
+          <Route path='*' element={<h1>Desculpe, nao encontramos essa rota</h1>} />
         </Routes>
       </BrowserRouter>
     </>
