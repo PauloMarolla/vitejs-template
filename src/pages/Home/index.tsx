@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Teste } from '~/components'
-import { useCounter } from '~/contexts/counter'
+import { useCounter } from '~/contexts'
 
 export const Home = () => {
 
@@ -19,4 +19,3 @@ export const Home = () => {
     </>
   )
 }
-

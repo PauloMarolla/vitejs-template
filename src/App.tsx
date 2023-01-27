@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom'
-import { ConsoleProvider } from './contexts/console'
+import { ConsoleProvider } from './contexts'
 import { Home, Login, User } from './pages'
 
 const App = () => {

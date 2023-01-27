@@ -11,7 +11,6 @@ export const CounterProvider = ({ children }: ICounterProvider) => {
     setCounter(0)
   }, [])
 
-
   return (
     <CounterContext.Provider 
       value={{ counter, setCounter, resetCounter }}>
