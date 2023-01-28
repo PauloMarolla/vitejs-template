@@ -20,6 +20,7 @@
       "~/*": ["src/*"]
     },
   },
+  "exclude": ["vite.config.ts"],
   "include": ["vite.config.ts", "**/*.ts", "**/*.tsx", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

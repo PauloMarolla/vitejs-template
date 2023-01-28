@@ -1,6 +1,7 @@
 import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom'
 import { ConsoleProvider } from './contexts'
 import { Home, Login, User } from './pages'
+import * as Sentry from '@sentry/react'
 
 const App = () => {
 
@@ -20,8 +21,11 @@ const App = () => {
           <Route path='*' element={<h1>Desculpe, nao encontramos essa rota</h1>} />
         </Routes>
       </BrowserRouter>
+      <button onClick={() => {
+        throw Error('aaaa')
+      }}>Break app</button>
     </>
   )
 }
 
-export default App
+export default Sentry.withProfiler(App)

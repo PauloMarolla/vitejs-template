@@ -5,7 +5,7 @@ const ConsoleContext = createContext({} as IConsoleContext)
 
 export const ConsoleProvider = ({ children }: IConsoleProvider) => {
 
-  console.log('rodou')
+  console.log('rodou', process.env.TESTE)
 
   return (
     <ConsoleContext.Provider 
