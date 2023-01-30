@@ -20,12 +20,12 @@ export default ({ mode }) => {
         include: './dist',
         authToken: env.VITE_SENTRY_AUTH_TOKEN,
         telemetry: false,
-        
+        ignore: ['node_modules', 'vite.config.ts']
       })
     ],
     build: {
       sourcemap: true,
-      emptyOutDir: true
+      emptyOutDir: true,
     }
   })
 }

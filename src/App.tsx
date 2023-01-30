@@ -22,7 +22,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
       <button onClick={() => {
-        throw Error('aaaa')
+        throw Error('uuuuu')
       }}>Break app</button>
     </>
   )

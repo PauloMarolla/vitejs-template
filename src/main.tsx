@@ -9,8 +9,8 @@ import './styles/index.css'
 Sentry.init({
   dsn: 'https://df59a2e1823b4aa7a2521b20815b707a@o4504579118792704.ingest.sentry.io/4504579122593792',
   integrations: [new BrowserTracing()],
-  
-  tracesSampleRate: 1.0,
+  release: 'vite@1.1.0',
+  tracesSampleRate: 1.0
 })
 
 
