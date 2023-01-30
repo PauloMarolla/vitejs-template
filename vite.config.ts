@@ -17,15 +17,15 @@ export default ({ mode }) => {
       sentryVitePlugin({
         org: 'marolla',
         project: 'vitejstemplate',
-        include: './dist',
+        include: './dist/assets',
         authToken: env.VITE_SENTRY_AUTH_TOKEN,
-        telemetry: false,
-        ignore: ['node_modules', 'vite.config.ts']
+        release: 'vite@4.0.0',
+        urlPrefix: '~/assets',
+        rewrite: false
       })
     ],
     build: {
       sourcemap: true,
-      emptyOutDir: true,
     }
   })
 }

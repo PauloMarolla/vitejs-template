@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Teste } from '~/components'
+import { Teste, Teste2 } from '~/components'
 import { useCounter } from '~/contexts'
 
 export const Home = () => {
@@ -14,6 +14,8 @@ export const Home = () => {
 
       <button onClick={() => setCounter(counter + 1)} >Acrescentar {counter}</button>
       <button onClick={resetCounter} >Resetar Counter</button>
+
+      <Teste2 />
       
       <Link style={{ color: 'red' }} to='/login'>Vá para o login</Link>
     </>
