@@ -26,6 +26,10 @@ export default ({ mode }) => {
     ],
     build: {
       sourcemap: true,
+    },
+    
+    server: {
+      port: 3000
     }
   })
 }

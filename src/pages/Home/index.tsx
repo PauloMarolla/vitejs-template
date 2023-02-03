@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Teste, Teste2 } from '~/components'
 import { useCounter } from '~/contexts'
 
+
 export const Home = () => {
 
   const { counter, setCounter, resetCounter } = useCounter()

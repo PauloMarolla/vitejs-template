@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import * as Sentry from '@sentry/react'
-import { BrowserTracing } from '@sentry/tracing'
 import App from './App'
+import { BrowserTracing } from '@sentry/tracing'
 import { CounterProvider } from './contexts'
+import { ApolloProvider } from '@apollo/client'
+import { client } from './services/graphql'
+import * as Sentry from '@sentry/react'
 import './styles/index.css'
 
 Sentry.init({
@@ -16,8 +18,10 @@ Sentry.init({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <CounterProvider>
-      <App />
-    </CounterProvider>
+    <ApolloProvider client={client}>
+      <CounterProvider>
+        <App />
+      </CounterProvider>
+    </ApolloProvider>
   </React.StrictMode>,
 )
