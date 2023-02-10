@@ -1,18 +1,35 @@
 import { Link } from 'react-router-dom'
-import { useToggle } from '~/hooks'
-import { translateStatus } from '~/utils'
+import { Input } from '~/components'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
+
+type LoginFormData = {
+  email: string;
+  password: string;
+};
 
 export const Login = () => {
-  const { isTrue, toggle } = useToggle(false)
 
-  return     (
+  const schema = yup.object({                     
+    // email: yup.number(),
+    // password: yup.string().required('É obrigatorio'),
+
+  }).required()
+
+  const { handleSubmit, control, formState: { errors } } = useForm<LoginFormData>({
+    resolver: yupResolver(schema)
+  })
+
+  return(     
     <>
       <h1>Esse é o login</h1>
 
-      <h4>Renderiza Status {translateStatus('success')}</h4>
-
-      <h4>Mude o botão</h4>
-      <button onClick={toggle} >{isTrue ? 'Sim' : 'Não'}</button>
+      <form onSubmit={handleSubmit((data) => console.log(data))}>
+        <Input control={control} error={errors.email?.message} name='email' />
+        <Input control={control} error={errors.password?.message} name='password' />
+        <button>Enviar</button>
+      </form>
       
   
       <Link style={{ color: 'red' }} to='/'>Voltar para a Home</Link>

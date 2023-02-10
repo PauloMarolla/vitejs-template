@@ -1,7 +1,8 @@
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { createContext, useContext, useState } from 'react'
 import { ICountryContext, ICountryProvider, ICountries, IQueryCountries, IContinents } from './types'
 import { toast } from 'react-toastify'
+import { GET_COUNTRIES } from './query'
 
 const CountryContext = createContext({} as ICountryContext)
 
@@ -9,26 +10,9 @@ export const CountryProvider = ({ children }: ICountryProvider) => {
   const [countries, setCountries] = useState<ICountries[]>([])
   const [continents, setContinents] = useState<IContinents[]>([])
 
-  const GET_COUNTRIES = gql`
-    query Query($code: ID!) {
-      countries {
-        name
-        currency
-        phone
-        code
-      }
-      continents {
-        name
-      }
-      country(code: $code) {
-        name
-      }
-    }
-  `
-
   const { loading } = useQuery<IQueryCountries>(GET_COUNTRIES, {
     variables: {
-      code: 'BR'
+      code: 'BR',
     },
     onCompleted: (data) => {
       setCountries(data.countries)
@@ -42,8 +26,13 @@ export const CountryProvider = ({ children }: ICountryProvider) => {
 
   return (
     <CountryContext.Provider
-      value={{ countries, setCountries, continents, setContinents, loading }}
-    >
+      value={{ 
+        countries, 
+        setCountries, 
+        continents, 
+        setContinents, 
+        loading 
+      }}>
       {children}
     </CountryContext.Provider>
   )
