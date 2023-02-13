@@ -13,4 +13,3 @@ const defaultStatus: IGenericObject<IDefaultStatus> = {
 export const translateStatus = (type: string) => {
   return defaultStatus[type] ?? type
 }
- 

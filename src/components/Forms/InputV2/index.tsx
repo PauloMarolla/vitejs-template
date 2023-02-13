@@ -11,7 +11,7 @@ type InputProps = {
   mask?: TinputMaskKeys
 }
 
-export const Input = ({ name, label, control }: InputProps) => {
+export const InputV2 = ({ name, label, control }: InputProps) => {
 
   return (
     <FormControl variant='outlined' >

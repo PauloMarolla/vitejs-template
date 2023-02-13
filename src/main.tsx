@@ -14,8 +14,6 @@ Sentry.init({
   release: 'vite@4.0.0',
   tracesSampleRate: 1.0
 })
-
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={client}>

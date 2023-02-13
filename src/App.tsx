@@ -1,8 +1,9 @@
 import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom'
 import { ConsoleProvider, CountryProvider } from './contexts'
 import { Home, Login, User, Country } from './pages'
-import * as Sentry from '@sentry/react'
 import { ToastContainer } from 'react-toastify'
+import './utils/yup'
+import * as Sentry from '@sentry/react'
 import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
