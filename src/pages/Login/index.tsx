@@ -22,16 +22,16 @@ export const Login = () => {
     resolver: yupResolver(schema)
   })
 
-  // useEffect(() =>{
-  //   setValue('password', '32775681000156')
-  // }, [])
+  useEffect(() =>{
+    setValue('password', '19996489155')
+  }, [])
 
   return(     
     <>
       <h1>Esse é o login</h1>
 
       <form onSubmit={handleSubmit((data) => console.log(data))}>
-        <InputV2 control={control} errorMessage={errors.email?.message} name='email' />
+        <InputV2 label='email' control={control} errorMessage={errors.email?.message} name='email' />
         <InputV2 label='Senha' control={control} errorMessage={errors.password?.message} name='password' />
         <button>Enviar</button>
       </form>

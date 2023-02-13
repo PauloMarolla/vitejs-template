@@ -1,7 +1,7 @@
-import { FormControl, InputLabel, OutlinedInput } from '@mui/material'
+import { FormControl, InputLabel, TextField } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import { TinputMaskKeys } from '~/utils/mask'
-import { PatternFormat } from 'react-number-format'
+import MaskedInput from 'react-text-mask'
 
 type InputProps = {
   name: string
@@ -14,23 +14,20 @@ type InputProps = {
 export const InputV2 = ({ name, label, control }: InputProps) => {
 
   return (
-    <FormControl variant='outlined' >
-      <InputLabel className='mText'>{label}</InputLabel>
+    <FormControl>
       <Controller
         name={name}
         control={control}
         defaultValue=''
         render={({ field }) => (
-          
-          <PatternFormat 
-            name={field.name}
-            value={field.value}
-            onChange={field.onChange}
-            onBlur={field.onBlur}
-            // allowEmptyFormatting
-            format={field.value.trim().length < 14 ? '###.###.###-##' : '##.###.###/####-##'}
-            label={label}
-            customInput={OutlinedInput}
+          <MaskedInput
+            placeholder='Enter a phone number'
+            guide={false}
+            mask={field.value.length > 14 ? ['(', /[1-9]/, /[1-9]/, ')', ' ', /\d/, /\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/] : ['(', /[1-9]/, /[1-9]/, ')', ' ', /\d/, /\d/, /\d/, /\d/,'-', /\d/, /\d/, /\d/, /\d/, /\d/]}
+            {...field}
+            render={(ref, props) => 
+              <TextField label={label} inputRef={ref} {...props} ref={field.ref} />
+            }
           />
        
         )}
