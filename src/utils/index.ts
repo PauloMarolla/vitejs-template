@@ -1,2 +1,2 @@
 export { translateStatus } from './translation'
-export { setMask } from './mask'
+export { setMask, clearString } from './mask'

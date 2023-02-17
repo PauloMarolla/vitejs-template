@@ -1,3 +1,5 @@
 export { Input } from './Input'
-export { InputV2 } from './InputV2'
+export { InputReactTextMask } from './InputReactTextMask'
+export { InputReactInputMask } from './InputReactInputMask'
+export { InputReactNumberFormatPattern } from './InputReactNumberFormatPattern'
 export { Select } from './Select'

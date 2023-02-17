@@ -1,41 +1,28 @@
 import { Link } from 'react-router-dom'
-import { Input, InputV2 } from '~/components'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
-
-type LoginFormData = {
-  email: string;
-  password: string;
-};
+import { ReactInputMaskForm } from '~/components/ReactInputMaskForm'
+import { ReactTextMaskForm } from '~/components/ReactTextMaskForm'
+import React from 'react'
+import { ReactNumberFormatForm } from '~/components/ReactNumberFormatForm'
 
 export const Login = () => {
 
-  const schema = yup.object({                     
-    email: yup.string(),
-    password: yup.string().required(),
-
-  }).required()
-
-  const { handleSubmit, control, formState: { errors }, setValue } = useForm<LoginFormData>({
-    resolver: yupResolver(schema)
-  })
-
-  useEffect(() =>{
-    setValue('password', '19996489155')
-  }, [])
-
+  const formStyles: React.CSSProperties = {
+    display: 'flex',
+    height: '100vh',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
+  }
+  
   return(     
     <>
       <h1>Esse é o login</h1>
-
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
-        <InputV2 label='email' control={control} errorMessage={errors.email?.message} name='email' />
-        <InputV2 label='Senha' control={control} errorMessage={errors.password?.message} name='password' />
-        <button>Enviar</button>
-      </form>
-      
+      <div style={formStyles}>
+        < ReactTextMaskForm />
+        < ReactInputMaskForm />
+        < ReactNumberFormatForm />
+      </div>
+   
   
       <Link style={{ color: 'red' }} to='/'>Voltar para a Home</Link>
     </>

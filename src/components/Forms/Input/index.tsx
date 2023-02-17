@@ -1,41 +1,59 @@
-import { FormControl, InputLabel, OutlinedInput } from '@mui/material'
-import { Controller } from 'react-hook-form'
+import { FormControl, TextField } from '@mui/material'
+import { Controller, useFormContext } from 'react-hook-form'
 import { TinputMaskKeys } from '~/utils/mask'
 import { PatternFormat } from 'react-number-format'
+import { forwardRef } from 'react'
 
 type InputProps = {
   name: string
-  control: any
   errorMessage?: string | null,
   label?: string,
   mask?: TinputMaskKeys
 }
 
-export const Input = ({ name, label, control }: InputProps) => {
+
+const NumberFormatCustom = forwardRef(function NumberFormatCustom(props: any, ref) {
+  const { onChange, ...other } = props
 
   return (
-    <FormControl variant='outlined' >
-      <InputLabel className='mText'>{label}</InputLabel>
+    <PatternFormat
+      {...other}
+      format='###.###.###-##'
+      getInputRef={ref}
+      mask='_'
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        })
+      }}
+    />
+  )
+})
+
+export const Input = ({ name, label }: InputProps) => {
+
+  const { control } = useFormContext()
+
+  return (
+    <FormControl>
       <Controller
         name={name}
         control={control}
         defaultValue=''
-        render={({ field }) => (
-          
-          <PatternFormat 
-            name={field.name}
-            value={field.value}
-            onChange={field.onChange}
-            onBlur={field.onBlur}
-            // allowEmptyFormatting
-            format={field.value.trim().length < 14 ? '###.###.###-##' : '##.###.###/####-##'}
+        render={({ field, fieldState: { error } }) => (
+          <TextField
+            id={name}
             label={label}
-            customInput={OutlinedInput}
+            error={Boolean(error)}
+            helperText={error?.message}
+            {...field}
+            InputProps={{ inputComponent: NumberFormatCustom }} 
           />
-       
         )}
       />
-      {/* <OutlinedInput label='label' /> */}
         
     </FormControl>
   )

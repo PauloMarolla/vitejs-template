@@ -1,4 +1,5 @@
-export type TinputMaskKeys = 'cnpj' | 'cpf' | 'cep' | 'cpfCnpj' | 'phone'
+import { clearString } from '~/utils'
+import { TinputMaskKeys } from '~/utils/mask'
 
 const inputMasks = {
   cpf: [/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'-',/\d/,/\d/],
@@ -14,11 +15,7 @@ const inputMasks = {
   }
 }
 
-export function clearString(value: string): string {
-  return value.replace(/[() -./]/g, '')
-}
-
-export function setMask(mask: TinputMaskKeys, value: string): any {
+export function setMask(value: string, mask: TinputMaskKeys): any {
   if(mask === 'phone') {
     return clearString(value).length < 11 ? inputMasks[mask].short : inputMasks[mask].long
   }
