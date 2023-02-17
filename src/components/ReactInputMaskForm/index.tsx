@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 
-interface ReactTextMaskData {
+interface ReactInputMaskData {
   cep: string,
   cnpj: string,
   cpf: string,
@@ -33,7 +33,7 @@ export const ReactInputMaskForm = () => {
     noMask: yup.string(),
   }).required()
 
-  const methods = useForm<ReactTextMaskData>({
+  const methods = useForm<ReactInputMaskData>({
     resolver: yupResolver(schema),
   })
 

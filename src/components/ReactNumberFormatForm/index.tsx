@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 
-interface ReactTextMaskData {
+interface ReactNumberFormatData {
   cep: string,
   cnpj: string,
   cpf: string,
@@ -33,7 +33,7 @@ export const ReactNumberFormatForm = () => {
     noMask: yup.string(),
   }).required()
 
-  const methods = useForm<ReactTextMaskData>({
+  const methods = useForm<ReactNumberFormatData>({
     resolver: yupResolver(schema),
   })
 
