@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { InputReactNumberFormatPattern } from '../Forms'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -10,6 +11,7 @@ interface ReactNumberFormatData {
   cpf: string,
   cpfCnpj: string,
   phone: string,
+  password: string,
   noMask: string,
 }
 
@@ -30,12 +32,17 @@ export const ReactNumberFormatForm = () => {
     cpf: yup.string(),
     cpfCnpj: yup.string(),
     phone: yup.string(),
+    password: yup.string(),
     noMask: yup.string(),
   }).required()
 
   const methods = useForm<ReactNumberFormatData>({
     resolver: yupResolver(schema),
   })
+
+  useEffect(() => {
+    methods.setValue('cep', '13503000')
+  }, [])
 
 
   return (
@@ -47,6 +54,7 @@ export const ReactNumberFormatForm = () => {
         <InputReactNumberFormatPattern mask='cpf' label='CPF' name='cpf' />
         <InputReactNumberFormatPattern mask='cpfCnpj' label='CPF/CNPJ' name='cpfCnpj' />
         <InputReactNumberFormatPattern mask='phone' label='Telefone' name='phone' />
+        <InputReactNumberFormatPattern autoComplete='on' type='password' label='Senha' name='password' />
         <InputReactNumberFormatPattern label='Sem Mascará' name='noMask' />
         <button style={styles.button}>Enviar</button>
       </form>

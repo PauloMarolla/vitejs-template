@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { InputReactInputMask } from '../Forms'
+import { InputReactImask } from '../Forms/InputReactImask'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 
-interface ReactInputMaskData {
+interface ReactImaskData {
   cep: string,
   cnpj: string,
   cpf: string,
@@ -15,7 +15,7 @@ interface ReactInputMaskData {
   noMask: string,
 }
 
-export const ReactInputMaskForm = () => {
+export const ReactImaskForm = () => {
   
   const styles = {
     title: {
@@ -36,7 +36,7 @@ export const ReactInputMaskForm = () => {
     password: yup.string(),
   }).required()
 
-  const methods = useForm<ReactInputMaskData>({
+  const methods = useForm<ReactImaskData>({
     resolver: yupResolver(schema),
   })
 
@@ -44,18 +44,17 @@ export const ReactInputMaskForm = () => {
     methods.setValue('cep', '13503000')
   }, [])
 
-
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
-        <h2 style={styles.title}>React-Input-Mask</h2>
-        <InputReactInputMask mask='cep' label='CEP' name='cep' />
-        <InputReactInputMask mask='cnpj' label='CNPJ' name='cnpj' />
-        <InputReactInputMask mask='cpf' label='CPF' name='cpf' />
-        <InputReactInputMask mask='cpfCnpj' label='CPF/CNPJ' name='cpfCnpj' />
-        <InputReactInputMask mask='phone' label='Telefone' name='phone' />
-        <InputReactInputMask autoComplete='on' type='password' label='Senha' name='password' />
-        <InputReactInputMask label='Sem Mascará' name='noMask' />
+        <h2 style={styles.title}>React-Imask</h2>
+        <InputReactImask mask='cep' label='CEP' name='cep' />
+        <InputReactImask mask='cnpj' label='CNPJ' name='cnpj' />
+        <InputReactImask mask='cpf' label='CPF' name='cpf' />
+        <InputReactImask mask='cpfCnpj' label='CPF/CNPJ' name='cpfCnpj' />
+        <InputReactImask mask='phone' label='Telefone' name='phone' />
+        <InputReactImask autoComplete='on' type='password' label='Senha' name='password' />
+        <InputReactImask label='Sem Mascará' name='noMask' />
         <button style={styles.button}>Enviar</button>
       </form>
     </FormProvider>

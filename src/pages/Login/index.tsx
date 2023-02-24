@@ -3,6 +3,7 @@ import { ReactInputMaskForm } from '~/components/ReactInputMaskForm'
 import { ReactTextMaskForm } from '~/components/ReactTextMaskForm'
 import React from 'react'
 import { ReactNumberFormatForm } from '~/components/ReactNumberFormatForm'
+import { ReactImaskForm } from '~/components/ReactImaskForm'
 
 export const Login = () => {
 
@@ -21,6 +22,7 @@ export const Login = () => {
         < ReactTextMaskForm />
         < ReactInputMaskForm />
         < ReactNumberFormatForm />
+        < ReactImaskForm />
       </div>
    
   

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { InputReactTextMask } from '../Forms'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -10,6 +11,7 @@ interface ReactTextMaskData {
   cpf: string,
   cpfCnpj: string,
   phone: string,
+  password: string,
   noMask: string,
 }
 
@@ -30,12 +32,17 @@ export const ReactTextMaskForm = () => {
     cpf: yup.string(),
     cpfCnpj: yup.string(),
     phone: yup.string(),
+    password: yup.string(),
     noMask: yup.string(),
   }).required()
 
   const methods = useForm<ReactTextMaskData>({
     resolver: yupResolver(schema),
   })
+
+  useEffect(() => {
+    methods.setValue('cep', '13503000')
+  }, [])
 
 
   return (
@@ -47,6 +54,7 @@ export const ReactTextMaskForm = () => {
         <InputReactTextMask mask='cpf' label='CPF' name='cpf' />
         <InputReactTextMask mask='cpfCnpj' label='CPF/CNPJ' name='cpfCnpj' />
         <InputReactTextMask mask='phone' label='Telefone' name='phone' />
+        <InputReactTextMask autoComplete='on' type='password' label='Senha' name='password' />
         <InputReactTextMask label='Sem Mascará' name='noMask' />
         <button style={styles.button}>Enviar</button>
       </form>
